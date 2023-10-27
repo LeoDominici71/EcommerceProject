@@ -5,6 +5,8 @@ import java.io.Serializable;
 import com.fiap.project.EcomerceProject.entities.Clients;
 import com.fiap.project.EcomerceProject.entities.CreditCard;
 
+import jakarta.annotation.Nullable;
+
 public class CreditCardDTO implements Serializable {
 
 	/**
@@ -20,6 +22,8 @@ public class CreditCardDTO implements Serializable {
 	private String cvv;
 	private String brand;
 	private Clients client;
+	@Nullable
+	private String code;
 
 	public CreditCardDTO(String cardNumber, String nameOnCard, String expirationDate, String cvv, String brand,
 			Clients client) {
@@ -102,5 +106,15 @@ public class CreditCardDTO implements Serializable {
 	public void setClient(Clients client) {
 		this.client = client;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 
 }
