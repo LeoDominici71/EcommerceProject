@@ -30,16 +30,16 @@ public class Payment implements Serializable {
 	
 	private CreditCard creditCard;
 	
-	private Order order;
+	private Order orders;
 
 	public Payment() {
 		super();
 	}
 
-	public Payment(Instant moment, Order order) {
+	public Payment(Instant moment, Order orders) {
 		super();
 		this.moment = moment;
-		this.order = order;
+		this.orders = orders;
 	}
 
 	public Long getId() {
@@ -60,19 +60,19 @@ public class Payment implements Serializable {
 	
 
 	public Order getOrder() {
-		return order;
+		return orders;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(Order orders) {
+		this.orders = orders;
 	}
 
 	public Double getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(Order order, String code) {
-		List<Products> products = order.getProducts();
+	public void setTotalValue(Order orders, String code) {
+		List<Products> products = orders.getProducts();
 		double somaPreco = 0;
 		for(Products productsSum : products) {
 			somaPreco += productsSum.getPrice();

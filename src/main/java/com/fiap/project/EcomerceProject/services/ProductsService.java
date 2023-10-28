@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fiap.project.EcomerceProject.dto.ProductsDTO;
 import com.fiap.project.EcomerceProject.entities.Products;
 import com.fiap.project.EcomerceProject.repositories.ProductsRepository;
 
 import jakarta.persistence.EntityNotFoundException;
-
+@Service
 public class ProductsService {
 	
 	@Autowired

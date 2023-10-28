@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fiap.project.EcomerceProject.dto.CategoryDTO;
 import com.fiap.project.EcomerceProject.entities.Category;
+import com.fiap.project.EcomerceProject.entities.Clients;
 import com.fiap.project.EcomerceProject.repositories.CategoryRepository;
-
+@Service
 public class CategoryService {
 	
 	@Autowired
 	private CategoryRepository repository;
+	
 	
 	public List<CategoryDTO> findAll(){
 		List<Category> category = repository.findAll();

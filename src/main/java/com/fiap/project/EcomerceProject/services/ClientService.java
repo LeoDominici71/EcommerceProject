@@ -18,6 +18,9 @@ public class ClientService {
 	@Autowired
 	private ClientRepository repository;
 	
+	@Autowired
+	private EmailAsyncService service;
+	
 	public List<ClientsDTO> findAll(){
 		List<Clients> clients = repository.findAll();
 		List<ClientsDTO> clientsDTO = new ArrayList<>();
@@ -29,6 +32,7 @@ public class ClientService {
 			ClientsDTO dto = copyToDTO(clientsFull);
 			clientsDTO.add(dto);
 		}
+		
 		return clientsDTO;
 		
 	}
@@ -43,6 +47,7 @@ public class ClientService {
 	public ClientsDTO insert(ClientsDTO client) {
 		Clients clients = copyFromDTO(client);
 		clients = repository.save(clients);
+		this.service.emailSender(clients);
 		return new ClientsDTO(clients);
 	}
 	
