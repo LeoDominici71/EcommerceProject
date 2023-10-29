@@ -84,6 +84,7 @@ public class CreditCardService {
 		dto.setCvv(creditCard.getCvv());
 		dto.setBrand(creditCard.getBrand());
 		dto.setCode(creditCard.getCode());
+		dto.setClient(creditCard.getClient());
 		return dto;
 		
 	}	
