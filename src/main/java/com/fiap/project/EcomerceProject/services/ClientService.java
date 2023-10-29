@@ -53,7 +53,7 @@ public class ClientService {
 	
 	public ClientsDTO update(Long id, ClientsDTO clientDto) {
 		Clients entity = repository.getReferenceById(id);
-		entity = copyFromDTO(clientDto);
+		copyFromDTOUpdate(clientDto, entity);
 		repository.save(entity);
 		return new ClientsDTO(entity);
 		
@@ -73,6 +73,7 @@ public class ClientService {
 		dto.setState(clients.getState());
 		dto.setPostalCode(clients.getPostalCode());
 		dto.setCity(clients.getCity());
+		
 		return dto;
 		
 	}	
@@ -87,6 +88,16 @@ public class ClientService {
 		dto.setPostalCode(clients.getPostalCode());
 		dto.setCity(clients.getCity());
 		return dto;
+		
+	}	
+	
+	private void copyFromDTOUpdate(ClientsDTO clients, Clients entity) {
+		entity.setName(clients.getName());
+		entity.setEmail(clients.getEmail());
+		entity.setStreet(clients.getStreet());
+		entity.setState(clients.getState());
+		entity.setPostalCode(clients.getPostalCode());
+		entity.setCity(clients.getCity());
 		
 	}	
 

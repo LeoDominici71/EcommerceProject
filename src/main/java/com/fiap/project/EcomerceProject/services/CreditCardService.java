@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fiap.project.EcomerceProject.dto.ClientsDTO;
 import com.fiap.project.EcomerceProject.dto.CreditCardDTO;
+import com.fiap.project.EcomerceProject.entities.Clients;
 import com.fiap.project.EcomerceProject.entities.CreditCard;
 import com.fiap.project.EcomerceProject.repositories.CreditCardRepository;
 
@@ -49,7 +51,7 @@ public class CreditCardService {
 	
 	public CreditCardDTO update(Long id, CreditCardDTO creditCardDTO) {
 		CreditCard creditCard = repository.getReferenceById(id);
-		creditCard = copyFromDTO(creditCardDTO);
+		copyFromDTOUpdate(creditCardDTO, creditCard);
 		repository.save(creditCard);
 		return new CreditCardDTO(creditCard);
 		
@@ -69,7 +71,6 @@ public class CreditCardService {
 		dto.setCvv(creditCard.getCvv());
 		dto.setBrand(creditCard.getBrand());
 		dto.setCode(creditCard.getCode());
-		dto.setClient(creditCard.getClient());
 		return dto;
 		
 	}	
@@ -83,10 +84,20 @@ public class CreditCardService {
 		dto.setCvv(creditCard.getCvv());
 		dto.setBrand(creditCard.getBrand());
 		dto.setCode(creditCard.getCode());
-		dto.setClient(creditCard.getClient());
 		return dto;
 		
 	}	
+	
+	private void copyFromDTOUpdate(CreditCardDTO dto, CreditCard entity) {
+		entity.setCardNumber(dto.getCardNumber());
+		entity.setNameOnCard(dto.getNameOnCard());
+		entity.setExpirationDate(dto.getExpirationDate());
+		entity.setCvv(dto.getCvv());
+		entity.setBrand(dto.getBrand());
+		entity.setCode(dto.getCode());
+		
+	}	
+
 
 
 }

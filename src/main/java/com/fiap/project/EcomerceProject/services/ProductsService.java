@@ -45,7 +45,7 @@ public class ProductsService {
 	
 	public ProductsDTO update(Long id, ProductsDTO products) {
 		Products productsId = repository.findById(id).orElseThrow(() -> new  EntityNotFoundException("Product id " + id + "does not exits"));
-		productsId = copyFromDTO(products);
+		copyFromDTOUpdate(products, productsId);
 		repository.save(productsId);
 		return new ProductsDTO(productsId);
 
@@ -75,6 +75,14 @@ private Products copyFromDTO(ProductsDTO dto) {
 	products.setDescription(dto.getDescription());
 	products.setPrice(dto.getPrice());
 	return products;
+	
+}	
+
+
+private void copyFromDTOUpdate(ProductsDTO dto, Products entity) {
+	entity.setName(dto.getName());
+	entity.setDescription(dto.getDescription());
+	entity.setPrice(dto.getPrice());
 	
 }	
 

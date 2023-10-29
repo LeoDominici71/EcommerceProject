@@ -52,7 +52,7 @@ public class OrderService {
 	
 	public OrderDTO update(Long id, OrderDTO orderDto) {
 		Order order = repository.getReferenceById(id);
-		order = copyFromDTO(orderDto);
+		copyFromDTOUpdate(orderDto, order);
 		repository.save(order);
 		return new OrderDTO(order);
 		
@@ -82,6 +82,14 @@ public class OrderService {
 		order.setProducts(orderDTO.getProducts());
 		order.setOrderStatus(OrderStatus.WAITING_PAYMENT);
 		return order;
+		
+	}	
+	
+	private void copyFromDTOUpdate(OrderDTO orderDTO, Order entity) {
+		entity.setMoment(Instant.now());
+		entity.setClient(orderDTO.getClient());
+		entity.setProducts(orderDTO.getProducts());
+		entity.setOrderStatus(OrderStatus.WAITING_PAYMENT);
 		
 	}	
 
